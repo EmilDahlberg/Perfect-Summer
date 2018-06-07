@@ -298,8 +298,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3863e2fb9ae77f44a6bd732ca41e18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usingController: 0
+  usingController: 1
   usingKeyboard: 0
+  lockCursor: 1
 --- !u!1001 &1475670011
 Prefab:
   m_ObjectHideFlags: 0
@@ -411,22 +412,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1599016058 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1570762763489000, guid: d2e2f53020f616e4392d0b5285dfa356,
-    type: 2}
-  m_PrefabInternal: {fileID: 808129602}
---- !u!114 &1599016063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1599016058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f972a4fb814c464f98988d66247921a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1641872526 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1942353442560392, guid: d2e2f53020f616e4392d0b5285dfa356,
@@ -443,3 +428,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f972a4fb814c464f98988d66247921a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensitivity: 10
+  maxYAngle: 80

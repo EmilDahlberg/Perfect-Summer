@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour {
 
- 
+    private GameManagerController gameManager;
     private float rotateSpeed = 0.5f;
     Transform cameraPivot ;
     Vector2 rotationSpeed = new Vector2( 100, 50 );   // Camera rotation speed for each axis
@@ -12,10 +12,32 @@ public class PlayerCameraController : MonoBehaviour {
     // Use this for initialization
     void Awake() {
         cameraPivot = Camera.main.transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerController>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (gameManager.usingController) JoyStickCamera();
+        if (gameManager.usingKeyboard) MouseInputCamera();
+   
+
+    }
+
+    void MouseInputCamera() {
+        //     public float sensitivity = 10f;
+        //     public float maxYAngle = 80f;
+        //private Vector2 currentRotation;
+   
+        //currentRotation.x += Input.GetAxis("Mouse X") * sensitivity;
+        //currentRotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
+        //currentRotation.x = Mathf.Repeat(currentRotation.x, 360);
+        //currentRotation.y = Mathf.Clamp(currentRotation.y, -maxYAngle, maxYAngle);
+        //Camera.main.transform.rotation = Quaternion.Euler(currentRotation.y, currentRotation.x, 0);
+        //if (Input.GetMouseButtonDown(0))
+        //    Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void JoyStickCamera() {
 
         // Get the input vector from keyboard or analog stick
         var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -38,7 +60,7 @@ public class PlayerCameraController : MonoBehaviour {
             directionVector = directionVector * directionLength;
         }
 
-    
+
 
 
         // Rotate the camera
@@ -52,11 +74,7 @@ public class PlayerCameraController : MonoBehaviour {
         transform.Rotate(0, camRotation.x, 0, Space.World);
         // Rotate only the camera with y-axis input
         cameraPivot.Rotate(-camRotation.y, 0, 0);
-        //transform.GetComponentInParent<Transform>().rotation = transform.rotation;
     }
-
-
-
 
 }
 

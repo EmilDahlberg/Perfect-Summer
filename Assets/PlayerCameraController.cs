@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class PlayerCameraController : MonoBehaviour {
     public float sensitivity = 10f;
@@ -11,9 +12,11 @@ public class PlayerCameraController : MonoBehaviour {
     private float rotateSpeed = 0.5f;
     Transform cameraPivot ;
     Vector2 rotationSpeed = new Vector2( 100, 50 );   // Camera rotation speed for each axis
+    Player player;
 
     // Use this for initialization
     void Awake() {
+        player = ReInput.players.GetPlayer(0);
         cameraPivot = Camera.main.transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerController>();
     }
@@ -28,19 +31,18 @@ public class PlayerCameraController : MonoBehaviour {
 
     void MouseInputCamera() {
     
-        currentRotation.x += Input.GetAxis("Mouse X") * sensitivity;
-        currentRotation.y -= Input.GetAxis("Mouse Y") * sensitivity;
+        currentRotation.x += player.GetAxis("LookRight") * sensitivity;
+        currentRotation.y -= player.GetAxis("LookUp") * sensitivity;
         currentRotation.x = Mathf.Repeat(currentRotation.x, 360);
         currentRotation.y = Mathf.Clamp(currentRotation.y, -maxYAngle, maxYAngle);
         transform.rotation = Quaternion.Euler(currentRotation.y, currentRotation.x, 0);
-        if (Input.GetMouseButtonDown(0))
-            Cursor.lockState = CursorLockMode.Locked;
+       
     }
 
     void JoyStickCamera() {
 
         // Get the input vector from keyboard or analog stick
-        var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        var directionVector = new Vector3(player.GetAxis("LookUp"), 0, player.GetAxis("LookRight"));
         // Rotate around y - axis
 
         if (directionVector != Vector3.zero) {
@@ -65,7 +67,7 @@ public class PlayerCameraController : MonoBehaviour {
 
         // Rotate the camera
         var camRotation = Vector2.zero;
-        camRotation = new Vector2(Input.GetAxis("HorizontalRight"), Input.GetAxis("VerticalRight"));
+        camRotation = new Vector2(player.GetAxis("LookRight"), player.GetAxis("LookUp"));
         camRotation.x *= rotationSpeed.x;
         camRotation.y *= rotationSpeed.y;
         camRotation *= Time.deltaTime;

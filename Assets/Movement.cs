@@ -66,12 +66,18 @@ public class Movement : MonoBehaviour {
         slideLimit = controller.slopeLimit - .1f;
         jumpTimer = antiBunnyHopFactor;
         player = ReInput.players.GetPlayer(0);
+        Debug.Log("hdhashdashdash");
     }
 
     void FixedUpdate() {
-      //  transform.rotation = Camera.main.transform.rotation;
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
+      
+
+
+        float inputX = player.GetAxis("Horizontal");
+        float inputY = player.GetAxis("Vertical");
+        print(inputX);
+        print(inputY);
+      
         // If both horizontal and vertical are used simultaneously, limit speed (if allowed), so the total doesn't exceed normal move speed
         float inputModifyFactor = (inputX != 0.0f && inputY != 0.0f && limitDiagonalSpeed) ? .7071f : 1.0f;
 

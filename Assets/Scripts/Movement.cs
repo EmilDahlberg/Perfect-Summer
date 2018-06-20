@@ -57,6 +57,8 @@ public class Movement : MonoBehaviour {
     private Vector3 contactPoint;
     private bool playerControl = false;
     private int jumpTimer;
+    public float pushPower = 2.0F;
+
 
     void Start() {
         controller = GetComponent<CharacterController>();
@@ -66,9 +68,10 @@ public class Movement : MonoBehaviour {
         slideLimit = controller.slopeLimit - .1f;
         jumpTimer = antiBunnyHopFactor;
         player = ReInput.players.GetPlayer(0);
-        Debug.Log("hdhashdashdash");
+   
     }
 
+    
     void FixedUpdate() {
       
 
@@ -163,6 +166,23 @@ public class Movement : MonoBehaviour {
     // Store point that we're in contact with for use in FixedUpdate if needed
     void OnControllerColliderHit(ControllerColliderHit hit) {
         contactPoint = hit.point;
+
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic)
+            return;
+
+        if (hit.moveDirection.y < -0.3F)
+            return;
+
+        if (hit.transform.CompareTag("Pushable")) {
+           
+            PushableController pushController = hit.transform.GetComponent<PushableController>();
+
+            Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+            body.velocity = pushDir * pushController.pushPower;
+        }
+    
+    
     }
 
     // If falling damage occured, this is the place to do something about it. You can make the player

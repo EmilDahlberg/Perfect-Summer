@@ -419,6 +419,10 @@
       <Project>{6800202F-4402-D405-F8CB-03DC7BD78B92}</Project>
       <Name>UnityEditor.StandardEvents</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{3A848AB7-9891-EDDA-D555-BF184C2F81F4}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="com.unity.render-pipelines.lightweight.Runtime.csproj">
       <Project>{27C5C58A-1D35-74B6-772E-FFF4901A4088}</Project>
       <Name>com.unity.render-pipelines.lightweight.Runtime</Name>
@@ -447,17 +451,13 @@
       <Project>{097081EC-B172-781E-F676-D45E858A96D6}</Project>
       <Name>Unity.ShaderGraph.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="com.unity.render-pipelines.core.IncludePaths.csproj">
-      <Project>{F2B70288-84D1-5F1A-592D-AFB0D48FEE35}</Project>
-      <Name>com.unity.render-pipelines.core.IncludePaths</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
-      <Project>{3A848AB7-9891-EDDA-D555-BF184C2F81F4}</Project>
-      <Name>Unity.TextMeshPro.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
       <Project>{07A21C90-D344-AE1A-8456-9910C203B41A}</Project>
       <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.render-pipelines.core.IncludePaths.csproj">
+      <Project>{F2B70288-84D1-5F1A-592D-AFB0D48FEE35}</Project>
+      <Name>com.unity.render-pipelines.core.IncludePaths</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
